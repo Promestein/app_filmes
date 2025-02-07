@@ -1,18 +1,22 @@
 package com.example.filmes.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "lista_filmes") // Nome da tabela no SQLite
+@Data
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Filme {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-
-    // criar atributos para name, date, tagline, minute, rating, description, genre
-    // criar getters e setters para todos os atributos
 
     @Column(name = "name")
     private String name;

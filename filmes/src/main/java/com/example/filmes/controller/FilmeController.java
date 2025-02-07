@@ -22,7 +22,8 @@ public class FilmeController {
     @GetMapping("/todos")
     public List<Filme> listarTodas() {
         // return filmeRepository.obterNomesFilmes();
-        return filmeRepository.findAll();
+        List<Filme> filmes = filmeRepository.obterNomesFilmes();
+        return ResponseEntity.status(HttpStatus.OK).body(filmes).getBody();
     }
 
     @GetMapping("/todos_nomes")
