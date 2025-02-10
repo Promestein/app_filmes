@@ -2,11 +2,10 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 
 // eslint-disable-next-line react/prop-types
-function AutoComplete({onAtualizar}) {
+function AutoComplete({ onAtualizar }) {
   const [input, setInput] = useState("");
   const [rating, setRating] = useState(0);
   const [suggestions, setSuggestions] = useState([]);
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,14 +39,12 @@ function AutoComplete({onAtualizar}) {
     } catch (error) {
       console.error("Erro ao adicionar filme:", error);
     }
-  }
+  };
 
   return (
     <div className="relative mx-auto items-center justify-center">
-      <h1 className="text-3xl font-bold text-center">
-              Adicionar Filme
-      </h1>
-      <div className="flex flex-row items-center justify-center">
+      <h1 className="text-3xl font-bold text-center">Adicionar Filme</h1>
+      <div className="flex items-center justify-center">
         <div className="relative w-80 mt-5">
           <input
             type="text"
@@ -57,11 +54,11 @@ function AutoComplete({onAtualizar}) {
             className="input input-bordered w-full"
           />
           {suggestions.length > 0 && (
-            <ul className="menu bg-base-100 w-full mt-1 rounded-box shadow-lg absolute z-10">
+            <ul className="menu flex flex-row bg-base-100 w-full mt-1 rounded-box shadow-lg absolute z-10 max-h-60 overflow-y-auto overflow-x-hidden">
               {suggestions.map((filme, index) => (
                 <li key={index}>
-                  <button onClick={ () => setInput(filme.name)}>
-                    {filme.name} ({filme.rating})
+                  <button onClick={() => setInput(filme.name)}>
+                    {filme.name} ({filme.date})
                   </button>
                 </li>
               ))}
@@ -73,14 +70,14 @@ function AutoComplete({onAtualizar}) {
           value={rating}
           onChange={(e) => setRating(e.target.value)}
           placeholder="Digite a nota do filme..."
-          className="input input-bordered w-20 mt-5 ml-5">
-        </input>
-        <button onClick={() => {adicionar(),onAtualizar()}} className="btn btn-primary mt-5 ml-5">
+          className="input input-bordered w-20 mt-5 ml-5"
+        />
+        <button onClick={() => { adicionar(), onAtualizar() }} className="btn btn-primary mt-5 ml-5">
           Adicionar
         </button>
       </div>
     </div>
   );
-};
+}
 
 export default AutoComplete;
