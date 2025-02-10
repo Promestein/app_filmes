@@ -44,7 +44,7 @@ function AutoComplete({ onAtualizar }) {
   return (
     <div className="relative mx-auto items-center justify-center">
       <h1 className="text-3xl font-bold text-center">Adicionar Filme</h1>
-      <div className="flex flex-row items-center justify-center">
+      <div className="flex items-center justify-center">
         <div className="relative w-80 mt-5">
           <input
             type="text"
@@ -54,31 +54,25 @@ function AutoComplete({ onAtualizar }) {
             className="input input-bordered w-full"
           />
           {suggestions.length > 0 && (
-            <ul className="menu bg-base-100 w-full mt-1 rounded-box shadow-lg absolute z-10">
+            <ul className="menu flex flex-row bg-base-100 w-full mt-1 rounded-box shadow-lg absolute z-10 max-h-60 overflow-y-auto overflow-x-hidden">
               {suggestions.map((filme, index) => (
                 <li key={index}>
                   <button onClick={() => setInput(filme.name)}>
-                    {filme.name} ({filme.rating})
+                    {filme.name} ({filme.date})
                   </button>
                 </li>
               ))}
             </ul>
           )}
         </div>
-        <div className="rating rating-lg rating-half ml-5 mt-5">
-          {[...Array(10)].map((_, i) => (
-            <input
-              key={i}
-              type="radio"
-              name="rating-10"
-              className={`mask mask-star-2 ${i % 2 === 0 ? "mask-half-1" : "mask-half-2"} bg-green-500`}
-              onChange={() => setRating((i + 1) / 2)}
-              checked={rating === (i + 1) / 2}
-            />
-          ))}
-        </div>
-
-        <button onClick={() => { adicionar(); onAtualizar(); }} className="btn btn-primary mt-5 ml-5">
+        <input
+          type="number"
+          value={rating}
+          onChange={(e) => setRating(e.target.value)}
+          placeholder="Digite a nota do filme..."
+          className="input input-bordered w-20 mt-5 ml-5"
+        />
+        <button onClick={() => { adicionar(), onAtualizar() }} className="btn btn-primary mt-5 ml-5">
           Adicionar
         </button>
       </div>
