@@ -26,9 +26,6 @@ public class Filme {
 
     @Column(name = "tagline")
     private String tagline;
-    
-    // @Column(name = "minute")
-    // private double minute;
 
     @Column(name = "rating")
     private double rating;
