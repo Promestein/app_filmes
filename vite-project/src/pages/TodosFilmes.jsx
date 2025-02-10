@@ -24,11 +24,11 @@ export default function FilmeTable() {
         <div className="overflow-x-auto">
             <Navbar />
             <div className="overflow-x-auto">
-                <table className="table w-full table-fixed"> {/* Adicionado table-fixed */}
+                <table className="table w-full table-fixed">
                     <thead>
                         <tr>
-                            <th className="w-16">ID</th>
-                            <th className="w-64">Nome</th> {/* Define um tamanho fixo */}
+                            <th className="w-16">#</th>
+                            <th className="w-64">Nome</th>
                             <th className="w-16">Nota</th>
                             <th className="w-24">Ano</th>
                             <th className="w-48">Gênero</th>
@@ -38,7 +38,7 @@ export default function FilmeTable() {
                         {currentFilmes.map((filme) => (
                             <tr key={filme.id}>
                                 <td className="w-16">{filme.id}</td>
-                                <td className="w-64 truncate overflow-hidden whitespace-nowrap">{filme.name}</td> {/* Garante corte do texto */}
+                                <td className="w-64 truncate overflow-hidden whitespace-nowrap">{filme.name}</td>
                                 <td className="w-16">{filme.rating}</td>
                                 <td className="w-24">{filme.date}</td>
                                 <td className="w-48">{filme.genre}</td>
@@ -47,7 +47,6 @@ export default function FilmeTable() {
                     </tbody>
                 </table>
 
-                {/* Paginação */}
                 <div className="flex justify-center items-center mt-4 space-x-4">
                     <button 
                         onClick={() => setCurrentPage(currentPage - 1)} 
