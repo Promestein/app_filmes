@@ -73,16 +73,10 @@ function AutoComplete({ onAtualizar }) {
             className="input input-bordered w-full"
           />
           {showSuggestions && suggestions.length > 0 && (
-            <ul className="menu bg-base-100 w-full mt-1 rounded-box shadow-lg absolute z-10 max-h-60 overflow-y-auto overflow-x-hidden border border-gray-300">
+            <ul className="menu flex flex-row bg-base-100 w-full mt-1 rounded-box shadow-lg absolute z-10 max-h-60 overflow-y-auto overflow-x-hidden">
               {suggestions.map((filme, index) => (
-                <li key={index} className="w-full">
-                  <button
-                    className="block w-full text-left px-2 py-1 hover:bg-gray-200"
-                    onClick={() => {
-                      setInput(filme.name);
-                      setShowSuggestions(false);
-                    }}
-                  >
+                <li key={index}>
+                  <button onClick={() => setInput(filme.name)}>
                     {filme.name} ({filme.date})
                   </button>
                 </li>
