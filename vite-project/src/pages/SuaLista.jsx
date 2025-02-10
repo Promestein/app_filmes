@@ -12,7 +12,7 @@ function SuaLista() {
   }
 
   return (
-    <div className="overflow-x-auto w-full">
+    <div className="w-full">
         <Navbar />
         <AutoComplete onAtualizar={handleAtualizar}/>
         <br />
