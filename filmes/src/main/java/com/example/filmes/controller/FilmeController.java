@@ -1,7 +1,6 @@
 package com.example.filmes.controller;
 
 import com.example.filmes.model.Filme;
-import com.example.filmes.model.FilmeLista;
 import com.example.filmes.repository.FilmeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

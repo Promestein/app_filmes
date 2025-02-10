@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
+// eslint-disable-next-line react/prop-types
 function AutoComplete({onAtualizar}) {
   const [input, setInput] = useState("");
   const [rating, setRating] = useState(0);
