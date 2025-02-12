@@ -1,6 +1,7 @@
 package com.example.filmes.controller;
 
 import com.example.filmes.model.Filme;
+import com.example.filmes.model.FilmeLista;
 import com.example.filmes.repository.FilmeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RequestMapping("/api/filmes")
 @RestController
@@ -37,15 +39,12 @@ public class FilmeController {
         return filmeRepository.findById(id);
     }
 
-    // Adicionar nova Filme
-    @PostMapping
-    public Filme adicionar(@RequestBody Filme filme) {
-        return filmeRepository.save(filme);
+    @GetMapping("/autocomplete")
+    public List<Filme> buscarFilmes(@RequestParam String query) {
+        List<Filme> filmes = filmeRepository.findAll();
+        return filmes.stream()
+                .filter(f -> f.getName().toLowerCase().contains(query.toLowerCase()))
+                .collect(Collectors.toList());
     }
 
-    // Deletar pessoa por ID
-    @DeleteMapping("/{id}")
-    public void deletar(@PathVariable Long id) {
-        filmeRepository.deleteById(id);
-    }
 }

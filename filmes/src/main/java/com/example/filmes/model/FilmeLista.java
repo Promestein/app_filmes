@@ -7,33 +7,21 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "lista_filmes") // Nome da tabela no SQLite
+@Table(name = "sua_lista") // Nome da tabela no SQLite
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Filme {
+public class FilmeLista {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     @Column(name = "name")
     private String name;
 
-    @Column(name = "date")
-    private double date;
-
-    @Column(name = "tagline")
-    private String tagline;
-
     @Column(name = "rating")
     private double rating;
-
-    @Column(name = "description")
-    private String description;
-
-    @Column(name = "genre")
-    private String genre;
 
 }
