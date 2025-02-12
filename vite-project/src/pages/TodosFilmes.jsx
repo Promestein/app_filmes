@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Navbar from "../componentes/NavBar";
+import { useLocation } from "react-router-dom";
 
 export default function FilmeTable() {
     const [filmes, setFilmes] = useState([]);
@@ -12,6 +13,9 @@ export default function FilmeTable() {
             .then((data) => setFilmes(data));
     }, []);
 
+    const location = useLocation();
+    const informacaoPassada = location.state;
+
     // Paginação: calcular índices de início e fim
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -23,51 +27,7 @@ export default function FilmeTable() {
     return (
         <div className="overflow-x-auto">
             <Navbar />
-            <div className="overflow-x-auto">
-                <table className="table w-full table-fixed"> {/* Adicionado table-fixed */}
-                    <thead>
-                        <tr>
-                            <th className="w-16">ID</th>
-                            <th className="w-64">Nome</th> {/* Define um tamanho fixo */}
-                            <th className="w-16">Nota</th>
-                            <th className="w-24">Ano</th>
-                            <th className="w-48">Gênero</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {currentFilmes.map((filme) => (
-                            <tr key={filme.id}>
-                                <td className="w-16">{filme.id}</td>
-                                <td className="w-64 truncate overflow-hidden whitespace-nowrap">{filme.name}</td> {/* Garante corte do texto */}
-                                <td className="w-16">{filme.rating}</td>
-                                <td className="w-24">{filme.date}</td>
-                                <td className="w-48">{filme.genre}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-
-                {/* Paginação */}
-                <div className="flex justify-center items-center mt-4 space-x-4">
-                    <button 
-                        onClick={() => setCurrentPage(currentPage - 1)} 
-                        disabled={currentPage === 1}
-                        className="btn btn-sm"
-                    >
-                        ⬅ Anterior
-                    </button>
-                    
-                    <span>Página {currentPage} de {totalPages}</span>
-                    
-                    <button 
-                        onClick={() => setCurrentPage(currentPage + 1)} 
-                        disabled={currentPage === totalPages}
-                        className="btn btn-sm"
-                    >
-                        Próximo ➡
-                    </button>
-                </div>
-            </div>
+            <h1 className="text-2xl font-bold text-center mt-4">Informação passada: {informacaoPassada}</h1>
         </div>
     );
 }
